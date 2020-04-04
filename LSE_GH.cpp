@@ -53,18 +53,72 @@ class LSE
 		void Borrar(int);
 };
 
+void LSE::InsertarI(int x)
+{      if(!Inicio)
+    Inicio=new Nodo(x);
+    else
+    
+    {
+        Nodo *Encerrado=new Nodo(x);
+        Encerrado->Asignasig(Inicio);
+        Inicio=Encerrado;
+    }
+}
 
+void LSE::InsertarF(int x)
+{
+    if(Inicio==NULL)
+    Inicio=new Nodo(x);
+    else
+        {
+            
+            Nodo *Pandemia=Inicio;
+            while(Pandemia->Obtienesig()!=NULL)
+                Pandemia=Pandemia->Obtienesig();
+            Nodo *Covid=new Nodo(x);
+            Pandemia->Asignasig(Covid);
+        }
+}
+void LSE::Imprimir()
+{
+    if(!Inicio)
+    cout<<"Lista Vacia"<<endl;
+    else
+        {
+            Nodo *Aux=Inicio;
+            while(Aux!=NULL)
+                {
+                    Aux->Imprimir();
+                    Aux=Aux->Obtienesig();
+                }
+        }
+}
 
-
-
+void LSE::BorrarI()
+{
+    if(!Inicio)
+        cout<<"Lista Vacia"<<endl;
+    else
+        {
+         if(Inicio->Obtienesig()==NULL)
+         	{
+                    delete Inicio;
+                    Inicio=NULL;
+                }
+            else
+                {
+                    Nodo *hay=Inicio;
+                    Inicio=Inicio->Obtienesig();
+                    hay->Asignasig(NULL);
+                    delete hay;
+                }
+        }
+}
 
 
 int main(int argc, const char * argv[])
-{
-    
-    
-    
-    LSE A;
+{   
+    LDE A;
     int opc, dato;
     do{
         cout<<"1.- Insertar Inicio"<<endl;
